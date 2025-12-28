@@ -4,6 +4,7 @@ import { Tooltip, Grow } from "@mui/material";
 import { watchlist } from "../data/data";
 import {
   BarChartOutlined,
+  ClassSharp,
   KeyboardArrowDown,
   KeyboardArrowUp,
   MoreHoriz,
@@ -104,3 +105,4 @@ const WatchListActions = ({ uid }) => {
     </span>
   );
 };
+ClassSharp
