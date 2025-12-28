@@ -105,4 +105,3 @@ const WatchListActions = ({ uid }) => {
     </span>
   );
 };
-ClassSharp
