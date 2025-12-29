@@ -9,6 +9,9 @@ const Holdings = () => {
       setAllHoldings(res.data);
     })
   },[]);
+
+
+  
   return (
     <>
       <h3 className="title">Holdings ({allHoldings.length})</h3>
@@ -66,6 +69,7 @@ const Holdings = () => {
           <p>P&L</p>
         </div>
       </div>
+      <VerticalGraph data={data}/>
     </>
   );
 };
