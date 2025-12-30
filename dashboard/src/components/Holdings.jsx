@@ -1,17 +1,44 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 // import { allHoldings } from "../data/data";
+import { VerticalGraph } from "./VerticalGraph";
+
 import axios from "axios";
 const Holdings = () => {
-  const [allHoldings,setAllHoldings]= useState([]);
+  const [allHoldings, setAllHoldings] = useState([]);
 
-  useEffect(()=>{
-    axios.get("http://localhost:3002/allHoldings").then((res)=>{
+  useEffect(() => {
+    axios.get("http://localhost:3002/allHoldings").then((res) => {
       setAllHoldings(res.data);
-    })
-  },[]);
+    });
+  }, []);
+  const labels = allHoldings.map((subArray) => subArray["name"]);
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Stock price",
+        data: allHoldings.map((stock)=>stock.price),
+        backgroundColor: "rgba(95, 55, 160, 0.5) ",
+      },
+    ],
+  };
 
+  // export const data = {
+  //   labels,
+  //   datasets: [
+  //     {
+  //       label: "Dataset 1",
+  //       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+  //       backgroundColor: "rgba(255, 99, 132, 0.5) ",
+  //     },
+  //     {
+  //       label: "Dataset 2",
+  //       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+  //       backgroundColor: "rgba(53, 162, 235, 0.5)",
+  //     },
+  //   ],
+  // };
 
-  
   return (
     <>
       <h3 className="title">Holdings ({allHoldings.length})</h3>
@@ -28,26 +55,27 @@ const Holdings = () => {
             <th>Net chg.</th>
             <th>Day chg.</th>
           </tr>
-        {allHoldings.map((stock,index)=>{
-          const curValue = stock.price*stock.qty;
-          const isProfit = curValue-stock.qty>=0.0;
-          const profitClass = isProfit?"profit":"loss";
-          const dayClass = stock.isLoss?"loss":"profit";
+          {allHoldings.map((stock, index) => {
+            const curValue = stock.price * stock.qty;
+            const isProfit = curValue - stock.qty >= 0.0;
+            const profitClass = isProfit ? "profit" : "loss";
+            const dayClass = stock.isLoss ? "loss" : "profit";
 
-          return (
-            <tr key={index}>
-            <td>{stock.name}</td>
-            <td>{stock.qty}</td>
-            <td>{stock.avg.toFixed(2)}</td>
-            <td>{stock.price.toFixed(2)}</td>
-            <td>{curValue.toFixed(2)}</td>
-            <td className={profitClass}>{(curValue-stock.avg * stock.qty).toFixed(2)}</td>
-            <td className={profitClass}>{stock.net}</td>
-            <td className={dayClass}>{stock.day}</td>
-          </tr>
-          )
-        })}
-
+            return (
+              <tr key={index}>
+                <td>{stock.name}</td>
+                <td>{stock.qty}</td>
+                <td>{stock.avg.toFixed(2)}</td>
+                <td>{stock.price.toFixed(2)}</td>
+                <td>{curValue.toFixed(2)}</td>
+                <td className={profitClass}>
+                  {(curValue - stock.avg * stock.qty).toFixed(2)}
+                </td>
+                <td className={profitClass}>{stock.net}</td>
+                <td className={dayClass}>{stock.day}</td>
+              </tr>
+            );
+          })}
         </table>
       </div>
 
@@ -69,7 +97,7 @@ const Holdings = () => {
           <p>P&L</p>
         </div>
       </div>
-      <VerticalGraph data={data}/>
+      <VerticalGraph data={data} />
     </>
   );
 };
