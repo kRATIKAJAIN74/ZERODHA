@@ -4,15 +4,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import Home from "./components/Home";
 import { GeneralContextProvider } from "./components/GeneralContext";
+import AuthGate from "./components/AuthGate";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <GeneralContextProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/*" element={<Home />} />
-        </Routes>
+        <AuthGate>
+          <Routes>
+            <Route path="/*" element={<Home />} />
+          </Routes>
+        </AuthGate>
       </BrowserRouter>
     </GeneralContextProvider>
   </React.StrictMode>

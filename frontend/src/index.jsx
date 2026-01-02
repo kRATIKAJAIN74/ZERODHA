@@ -11,6 +11,7 @@ import Navbar from "./landing_page/Navbar";
 import Footer from "./landing_page/Footer";
 import ProductsPage from "./landing_page/products/ProductsPage";
 import NotFound from "./landing_page/NotFound";
+import Login from "./landing_page/login/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
     <Routes>
       <Route path="/" element={<HomePage />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
+      <Route path="/login" element={<Login />}></Route>
       <Route path="/about" element={<AboutPage />}></Route>
       <Route path="/product" element={<ProductsPage />}></Route>
       <Route path="/pricing" element={<PricingPage />}></Route>
