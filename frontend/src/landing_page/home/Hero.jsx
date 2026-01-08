@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function Hero() {
+  const navigate = useNavigate();
+
   return (
     <div className="container p-5">
       <div className="row text-center">
@@ -15,6 +19,7 @@ function Hero() {
         <button
           style={{ width: "20%", margin: "auto" }}
           className="btn btn-primary fs-5"
+          onClick={() => navigate('/signup')}
         >
           Sign up
         </button>
