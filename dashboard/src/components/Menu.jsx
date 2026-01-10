@@ -27,7 +27,7 @@ const Menu = () => {
       );
 
       setUser(null); // optional but clean
-      window.location.href = "http://localhost:3000/login";
+      window.location.href =  `${process.env.REACT_APP_FRONTEND_URL}`;
     } catch (err) {
       console.error("Logout failed", err);
     }
