@@ -100,7 +100,7 @@ function Footer() {
           </p>
         </div>
       </div>
-      <p style={{textAlign: "center"}}>Made by &hearts; Kratika & Vivek</p>
+      <p style={{textAlign: "center"}}>Made with &#10084;&#65039;  by Kratika & Vivek</p>
     </footer>
   );
 }
