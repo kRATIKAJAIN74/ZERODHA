@@ -10,14 +10,18 @@ const LogoutButton = () => {
       );
 
       // 🔥 Redirect to login page
-      window.location.href = "http://localhost:3000/login";
+      window.location.replace(`${process.env.REACT_APP_FRONTEND_URL}/login`);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <button onClick={handleLogout} style={{border:"none"}} className="btn btn-danger">
+    <button
+      onClick={handleLogout}
+      style={{ border: "none" }}
+      className="btn btn-danger"
+    >
       Logout
     </button>
   );
