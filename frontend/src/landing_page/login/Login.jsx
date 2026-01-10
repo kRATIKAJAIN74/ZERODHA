@@ -32,7 +32,7 @@ const Login = () => {
 
   try {
     const res = await axios.post(
-      "http://localhost:3002/auth/login",
+      `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
       inputValue,
       { withCredentials: true }
     );

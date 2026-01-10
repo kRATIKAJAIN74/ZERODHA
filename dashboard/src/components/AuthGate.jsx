@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import  GeneralContext  from "./GeneralContext";
+import GeneralContext from "./GeneralContext";
 
 const AuthGate = ({ children }) => {
   const { setUser } = useContext(GeneralContext);
@@ -8,7 +8,7 @@ const AuthGate = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/me", {
+      .get(`${process.env.REACT_APP_BACKEND_URL}/me`, {
         withCredentials: true,
       })
       .then((res) => {

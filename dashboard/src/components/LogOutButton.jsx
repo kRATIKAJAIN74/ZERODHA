@@ -4,7 +4,7 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3002/auth/logout",
+        `${process.env.REACT_APP_BACKEND_URL}/auth/logout`,
         {},
         { withCredentials: true }
       );
