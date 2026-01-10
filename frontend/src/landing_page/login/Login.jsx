@@ -28,31 +28,30 @@ const Login = () => {
     });
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
-      inputValue,
-      { withCredentials: true }
-    );
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
+        inputValue,
+        { withCredentials: true }
+      );
 
-    console.log("LOGIN RESPONSE:", res.data);
+      console.log("LOGIN RESPONSE:", res.data);
 
-    // 🔑 EXPLICIT CHECK
-    if (res.data && res.data.success === true) {
-      // 🚀 PUSH USER TO DASHBOARD
-      window.location.replace("http://localhost:3001");
-      return;
+      // 🔑 EXPLICIT CHECK
+      if (res.data && res.data.success === true) {
+        // 🚀 PUSH USER TO DASHBOARD
+        window.location.replace(process.env.REACT_APP_DASHBOARD_URL);
+        return;
+      }
+
+      toast.error(res.data.message || "Login failed");
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong");
     }
-
-    toast.error(res.data.message || "Login failed");
-  } catch (error) {
-    console.error(error);
-    toast.error("Something went wrong");
-  }
-};
-
+  };
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">

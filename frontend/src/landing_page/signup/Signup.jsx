@@ -40,8 +40,8 @@ function Signup() {
       if (data.success) {
         toast.success(data.message);
 
-        // 🔥 Redirect to dashboard
-        window.location.replace("http://localhost:3001");
+        
+        window.location.replace(process.env.REACT_APP_DASHBOARD_URL);
       } else {
         toast.error(data.message);
       }
