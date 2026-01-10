@@ -5,9 +5,7 @@ const bcrypt = require("bcryptjs");
 module.exports.Signup = async (req, res) => {
   try {
     if (!req.body) {
-      return res.status(400).json({
-        message: "Request body missing",
-      });
+      return res.status(400).json({ message: "Request body missing" });
     }
 
     const { email, password, username, createdAt } = req.body;
@@ -21,6 +19,7 @@ module.exports.Signup = async (req, res) => {
 
     const token = createSecretToken(user._id);
     const isProd = process.env.NODE_ENV === "production";
+
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: isProd ? "none" : "lax",
@@ -58,14 +57,16 @@ module.exports.Login = async (req, res) => {
     }
 
     const token = createSecretToken(user._id);
+    const isProd = process.env.NODE_ENV === "production";
+
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
       maxAge: 24 * 60 * 60 * 1000,
     });
 
-    return res.status(201).json({
+    return res.status(200).json({
       message: "User logged in successfully",
       success: true,
     });

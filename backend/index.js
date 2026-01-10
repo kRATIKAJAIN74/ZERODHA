@@ -20,10 +20,14 @@ const uri = process.env.MONGO_URL;
    ========================= */
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "https://zerodha-frontend-7cn4.onrender.com",
+      "https://zerodha-dashboard-ypcc.onrender.com",
+    ],
     credentials: true,
   })
 );
+
 
 /* =========================
    🔥 CORE MIDDLEWARE
