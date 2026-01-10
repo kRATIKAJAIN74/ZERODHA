@@ -10,7 +10,7 @@ const LogoutButton = () => {
       );
 
       // 🔥 Redirect to login page
-      window.location.replace(`${process.env.REACT_APP_FRONTEND_URL}/login`);
+      window.location.replace(`${process.env.REACT_APP_FRONTEND_URL}`);
     } catch (err) {
       console.error(err);
     }
